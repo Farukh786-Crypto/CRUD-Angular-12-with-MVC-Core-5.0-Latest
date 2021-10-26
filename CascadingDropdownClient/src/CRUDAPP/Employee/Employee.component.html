@@ -1,0 +1,27 @@
+<div class="container">
+    <h2>{{title|titlecase}}</h2>
+    {{employeeModel.EmployeeForm.value|json}}
+    <form [formGroup]="employeeModel.EmployeeForm" novalidate>
+        Employee Name :<input type="text" [(ngModel)]="employeeModel.empName" formControlName="empName"><br>
+        Employee Password :<input type="text" [(ngModel)]="employeeModel.empPassword" formControlName="empPassword"><br>
+        Employee Email :<input type="text" [(ngModel)]="employeeModel.empEmail" formControlName="empEmail"><br>
+        <button class="btn btn-primary" (click)="SaveButton(employeeModel.EmployeeForm.value)">{{btnSave}}</button><br>
+        
+    </form>
+    <table border="1px solid black">
+        <tr>
+            <th>Emp Id</th>
+            <th>Emp Name</th>
+            <th>Emp Password</th>
+            <th>Emp Email</th>
+        </tr>
+        <tr *ngFor="let emp of empList; let i=index;">
+            <td>{{i+1}}</td>
+            <td>{{emp.empName}}</td>
+            <td>{{emp.empPassword}}</td>
+            <td>{{emp.empEmail}}</td>
+            <td><button (click)="EmployeeById(emp.empId)">Edit</button></td>
+            <td><button (click)="deleteById(emp.empId)">Delete</button></td>
+        </tr>
+    </table>
+</div>
